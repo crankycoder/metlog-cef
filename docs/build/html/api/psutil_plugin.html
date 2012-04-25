@@ -1,0 +1,214 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>API documentation &mdash; metlog-psutils 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="metlog-psutils 0.1 documentation" href="../index.html" />
+    <link rel="prev" title="Detailed message layout" href="../msg_layout.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../msg_layout.html" title="Detailed message layout"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">metlog-psutils 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-metlog_psutils.psutil_plugin">
+<span id="api-documentation"></span><h1>API documentation<a class="headerlink" href="#module-metlog_psutils.psutil_plugin" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="metlog_psutils.psutil_plugin.LazyPSUtil">
+<em class="property">class </em><tt class="descclassname">metlog_psutils.psutil_plugin.</tt><tt class="descname">LazyPSUtil</tt><big>(</big><em>pid</em>, <em>server_addr=None</em><big>)</big><a class="headerlink" href="#metlog_psutils.psutil_plugin.LazyPSUtil" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class can only be used <em>outside</em> the process that is being inspected</p>
+<dl class="method">
+<dt id="metlog_psutils.psutil_plugin.LazyPSUtil.get_connections">
+<tt class="descname">get_connections</tt><big>(</big><big>)</big><a class="headerlink" href="#metlog_psutils.psutil_plugin.LazyPSUtil.get_connections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return details of each network connection as a list of
+dictionaries.</p>
+<p>Keys in each connection dictionary are:</p>
+<blockquote>
+<div><p>local - host:port for the local side of the connection</p>
+<p>remote - host:port of the remote side of the connection</p>
+<dl class="docutils">
+<dt>status - TCP Connection status. One of :</dt>
+<dd><ul class="first last simple">
+<li>&#8220;ESTABLISHED&#8221;</li>
+<li>&#8220;SYN_SENT&#8221;</li>
+<li>&#8220;SYN_RECV&#8221;</li>
+<li>&#8220;FIN_WAIT1&#8221;</li>
+<li>&#8220;FIN_WAIT2&#8221;</li>
+<li>&#8220;TIME_WAIT&#8221;</li>
+<li>&#8220;CLOSE&#8221;</li>
+<li>&#8220;CLOSE_WAIT&#8221;</li>
+<li>&#8220;LAST_ACK&#8221;</li>
+<li>&#8220;LISTEN&#8221;</li>
+<li>&#8220;CLOSING&#8221;</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="metlog_psutils.psutil_plugin.LazyPSUtil.get_cpu_info">
+<tt class="descname">get_cpu_info</tt><big>(</big><big>)</big><a class="headerlink" href="#metlog_psutils.psutil_plugin.LazyPSUtil.get_cpu_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return CPU usages in seconds split by system and user for the
+whole process.  Also provides CPU % used for a 0.1 second
+interval.</p>
+<p>Note that this method will <em>block</em> for 0.1 seconds.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="metlog_psutils.psutil_plugin.LazyPSUtil.get_io_counters">
+<tt class="descname">get_io_counters</tt><big>(</big><big>)</big><a class="headerlink" href="#metlog_psutils.psutil_plugin.LazyPSUtil.get_io_counters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of bytes read, written and the number of
+read and write syscalls that have invoked.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="metlog_psutils.psutil_plugin.LazyPSUtil.get_memory_info">
+<tt class="descname">get_memory_info</tt><big>(</big><big>)</big><a class="headerlink" href="#metlog_psutils.psutil_plugin.LazyPSUtil.get_memory_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the percentage of physical memory used, RSS and VMS
+memory used</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="metlog_psutils.psutil_plugin.LazyPSUtil.get_thread_cpuinfo">
+<tt class="descname">get_thread_cpuinfo</tt><big>(</big><big>)</big><a class="headerlink" href="#metlog_psutils.psutil_plugin.LazyPSUtil.get_thread_cpuinfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return CPU usages in seconds split by system and user on a
+per thread basis.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="metlog_psutils.psutil_plugin.LazyPSUtil.summarize_network">
+<tt class="descname">summarize_network</tt><big>(</big><em>network_data</em><big>)</big><a class="headerlink" href="#metlog_psutils.psutil_plugin.LazyPSUtil.summarize_network" title="Permalink to this definition">¶</a></dt>
+<dd><p>Summarizes network connection information into something that
+is friendly to statsd.</p>
+<p>From a metrics standpoint, we only really care about the
+number of connections in each state.</p>
+<dl class="docutils">
+<dt>Connections are sorted into 2 buckets</dt>
+<dd><ul class="first simple">
+<li>server connections</li>
+</ul>
+<p class="last">For each listening host:port, a dictionary of connection
+states to connection counts is created</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="metlog_psutils.psutil_plugin.check_osx_perm">
+<tt class="descclassname">metlog_psutils.psutil_plugin.</tt><tt class="descname">check_osx_perm</tt><big>(</big><big>)</big><a class="headerlink" href="#metlog_psutils.psutil_plugin.check_osx_perm" title="Permalink to this definition">¶</a></dt>
+<dd><p>psutil can&#8217;t do the right thing on OSX because of weird permissioning rules
+in Darwin.</p>
+<p><a class="reference external" href="http://code.google.com/p/psutil/issues/detail?id=108">http://code.google.com/p/psutil/issues/detail?id=108</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="metlog_psutils.psutil_plugin.config_plugin">
+<tt class="descclassname">metlog_psutils.psutil_plugin.</tt><tt class="descname">config_plugin</tt><big>(</big><em>config</em><big>)</big><a class="headerlink" href="#metlog_psutils.psutil_plugin.config_plugin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configure the metlog plugin prior to binding it to the
+metlog client.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="metlog_psutils.psutil_plugin.process_details">
+<tt class="descclassname">metlog_psutils.psutil_plugin.</tt><tt class="descname">process_details</tt><big>(</big><em>pid=None</em>, <em>net=False</em>, <em>io=False</em>, <em>cpu=False</em>, <em>mem=False</em>, <em>threads=False</em>, <em>server_addr=None</em><big>)</big><a class="headerlink" href="#metlog_psutils.psutil_plugin.process_details" title="Permalink to this definition">¶</a></dt>
+<dd><p>psutils doesn&#8217;t work on it&#8217;s own process.  Run psutils through a subprocess
+so that we don&#8217;t have to deal with the process issues</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../msg_layout.html"
+                        title="previous chapter">Detailed message layout</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/api/psutil_plugin.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../msg_layout.html" title="Detailed message layout"
+             >previous</a> |</li>
+        <li><a href="../index.html">metlog-psutils 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Victor Ng.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

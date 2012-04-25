@@ -1,0 +1,2 @@
+include MetlogPsutils.spec *.rst
+recursive-include docs *.rst *.py Makefile
