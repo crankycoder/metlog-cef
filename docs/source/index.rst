@@ -9,6 +9,7 @@
 .. toctree::
    :glob:
 
+   config
    msg_layout
    api/*
 
