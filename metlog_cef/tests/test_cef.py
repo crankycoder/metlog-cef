@@ -12,6 +12,7 @@
 #
 # ***** END LICENSE BLOCK *****
 from metlog.config import client_from_text_config
+import metlog_cef
 import unittest
 import json
 from cef import logger
@@ -110,3 +111,8 @@ class TestMetlog(unittest.TestCase):
     def test_default_signature(self):
         content = self._log('xx', 5)
         self.assertTrue('xx|xx' in content)
+
+    def test_use_of_constant(self):
+        content = self._log('xx', 5,
+                signature=metlog_cef.AUTH_FAILURE)
+        assert '|AuthFail|' in content
