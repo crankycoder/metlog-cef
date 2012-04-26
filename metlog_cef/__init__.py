@@ -5,3 +5,8 @@
 # You can obtain one at http://mozilla.org/MPL/2.0/.
 # ***** END LICENSE BLOCK *****
 
+from cef import AUTH_FAILURE        # NOQA
+from cef import CAPTCHA_FAILURE     # NOQA
+from cef import OVERRIDE_FAILURE    # NOQA
+from cef import ACCOUNT_LOCKED      # NOQA
+from cef import PASSWD_RESET_CLR    # NOQA

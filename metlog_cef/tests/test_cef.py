@@ -110,3 +110,9 @@ class TestMetlog(unittest.TestCase):
     def test_default_signature(self):
         content = self._log('xx', 5)
         self.assertTrue('xx|xx' in content)
+
+    def test_authorization_signature(self):
+        import metlog_cef
+        content = self._log('xx', 5,
+                signature=metlog_cef.AUTH_FAILURE)
+        assert '|AuthFail|' in content
