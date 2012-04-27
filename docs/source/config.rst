@@ -21,10 +21,10 @@ Usage
 =====
 
 Logging CEF records is similar to using the raw CEF library.
+Constants from the `cef` library have been exported in the `metlog_cef` module.
 
-Instead of using `log_cef`, simply use the `cef` method of the metlog client.
-If you have existing code that uses `log_cef`, your code will change
-from this ::
+For existing code that uses the `cef` library, you will use the `cef`
+method of the metlog client.  Your code will change from this ::
 
     from cef import log_cef, AUTH_FAILURE
 
@@ -37,18 +37,25 @@ from this ::
 to this ::
 
     from metlog.decorators.base import CLIENT_WRAPPER
-    from metlog.plugins import namespace as ns
+    import metlog_cef
 
     ...
 
     client = CLIENT_WRAPPER.client
     client.cef("Authentication attemped without username", 5,
             request.environ, request.registry.settings,
-            "", signature=ns.cef.AUTH_FAILURE)
+            "", signature=metlog_cef.AUTH_FAILURE)
 
-Note that the CEF plugin has exported important constants into a
-registry.
+Note that the CEF plugin has exported important constants into the
+`metlog_cef` module. You will find all the existing
 
 Constants exported are:
 
-    # TODO: list exported stuff here
+- AUTH_FAILURE
+- CAPTCHA_FAILURE
+- OVERRIDE_FAILURE
+- ACCOUNT_LOCKED
+- PASSWD_RESET_CLR
+
+See the `cef <http://pypi.python.org/pypi/cef>`_ library for details on each of the constants.
+
