@@ -20,6 +20,14 @@ The CEF plugin requires no other options to be specified.
 Usage
 =====
 
+Obtaining a client can be done in multiple ways, please refer to the
+metlog documentation for complete details.
+
+That said, if you are impatient you can obtain a client using
+`get_client`.  We strongly suggest you do not do this though. ::
+
+    from metlog.holder import get_client
+
 Logging CEF records is similar to using the raw CEF library.
 Constants from the `cef` library have been exported in the `metlog_cef` module.
 
@@ -36,18 +44,18 @@ method of the metlog client.  Your code will change from this ::
 
 to this ::
 
-    from metlog.decorators.base import CLIENT_WRAPPER
+    from metlog.holder impot get_client
     import metlog_cef
 
     ...
 
-    client = CLIENT_WRAPPER.client
+    client = get_client('metlog_cef')
     client.cef("Authentication attemped without username", 5,
             request.environ, request.registry.settings,
             "", signature=metlog_cef.AUTH_FAILURE)
 
 Note that the CEF plugin has exported important constants into the
-`metlog_cef` module. You will find all the existing
+`metlog_cef` module.
 
 Constants exported are:
 
