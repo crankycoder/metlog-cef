@@ -11,6 +11,7 @@
 #   Victor Ng (vng@mozilla.com)
 #
 # ***** END LICENSE BLOCK *****
+METLOG_METHOD_NAME = 'cef'
 
 
 def log_cef(self, name, severity, environ, config, username='none',
@@ -36,6 +37,7 @@ def log_cef(self, name, severity, environ, config, username='none',
 
     # Return the formatted message
     return msg
+log_cef.metlog_name = METLOG_METHOD_NAME
 
 
 def config_plugin(config):
