@@ -2,7 +2,7 @@ Configuration
 =============
 
 Configuration is normally handled through Metlog's configuration
-system using INI configuration files. A psutil plugin must use the
+system using INI configuration files. A CEF plugin must use the
 `metlog_cef.cef_plugin:config_plugin` as the provider of the
 plugin.  The suffix of the configuration section name is used to
 set the method name on the Metlog client. Any part after
