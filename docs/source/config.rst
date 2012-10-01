@@ -15,7 +15,61 @@ the Metlog server. ::
     [metlog_plugin_cef]
     provider=metlog_cef.cef_plugin:config_plugin
 
-The CEF plugin requires no other options to be specified.
+The CEF plugin provides some optional configuration settings for 
+setting the syslog options, syslog facility, syslog ident and syslog
+priority.
+
+By default, the syslog facility will be set to LOCAL4.
+
+Valid facility settings are :
+
+  * KERN
+  * USER
+  * MAIL
+  * DAEMON
+  * AUTH
+  * LPR
+  * NEWS
+  * UUCP
+  * CRON
+  * LOCAL0
+  * LOCAL1
+  * LOCAL2
+  * LOCAL3
+  * LOCAL4
+  * LOCAL5
+  * LOCAL6
+  * LOCAL7
+
+Valid priority settings are :
+
+  * EMERG
+  * ALERT
+  * CRIT
+  * ERR
+  * WARNING
+  * NOTICE
+  * INFO
+  * DEBUG
+
+Syslog options can be set using a comma delimited list with the
+following options :
+
+  * PID
+  * CONS
+  * NDELAY
+  * NOWAIT
+  * LOG_PERROR
+
+Here is one sample configuration demonstrating using all available
+configuration keys ::
+
+    [metlog_plugin_cef]
+    provider=metlog_cef.cef_plugin:config_plugin
+    syslog_options=NDELAY,PID
+    syslog_facility=KERN
+    syslog_ident=my_funny_app
+    syslog_priority=EMERG
 
 Usage
 =====
@@ -66,4 +120,3 @@ Constants exported are:
 - PASSWD_RESET_CLR
 
 See the `cef <http://pypi.python.org/pypi/cef>`_ library for details on each of the constants.
-
