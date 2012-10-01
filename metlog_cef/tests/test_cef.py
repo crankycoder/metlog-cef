@@ -16,6 +16,8 @@ import metlog_cef
 import unittest
 import json
 from cef import logger
+from nose.tools import raises, eq_
+from metlog_cef.cef_plugin import InvalidArgumentError
 
 
 class TestMetlog(unittest.TestCase):
@@ -116,3 +118,40 @@ class TestMetlog(unittest.TestCase):
         content = self._log('xx', 5,
                 signature=metlog_cef.AUTH_FAILURE)
         assert '|AuthFail|' in content
+
+
+class TestExtraConfig(unittest.TestCase):
+
+    logger = 'tests'
+
+    def test_config(self):
+
+        cfg_txt = """
+        [metlog]
+        sender_class=metlog.senders.DebugCaptureSender
+
+        [metlog_plugin_cef]
+        provider=metlog_cef.cef_plugin:config_plugin
+        syslog_options=PID,NDELAY
+        syslog_facility=KERN
+        syslog_ident=some_identifier
+        syslog_priority=EMERG
+        """
+        client = client_from_text_config(cfg_txt, 'metlog')
+        expected = {'syslog_priority': 'EMERG',
+                    'syslog_ident': 'some_identifier',
+                    'syslog_facility': 'KERN',
+                    'syslog_options': 'PID,NDELAY'}
+        eq_(client.cef.cef_meta, expected)
+
+    @raises(InvalidArgumentError)
+    def test_bad_option(self):
+        cfg_txt = """
+        [metlog]
+        sender_class=metlog.senders.DebugCaptureSender
+
+        [metlog_plugin_cef]
+        provider=metlog_cef.cef_plugin:config_plugin
+        syslog_options=PIDBAD
+        """
+        client_from_text_config(cfg_txt, 'metlog')
